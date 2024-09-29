@@ -1,0 +1,114 @@
+services:
+  account_service:
+    build:
+      context: ./account_service
+    container_name: account
+    environment:
+      DJANGO_ENV: ${DJANGO_ENV}
+    env_file:
+      - .env
+      - ./account_service/.env
+    restart: always
+    expose:
+      - "8002"
+    depends_on:
+      db_account:
+        condition: service_healthy
+
+  notes_service:
+    build:
+      context: ./notes_service
+    container_name: notes
+    environment:
+      DJANGO_ENV: ${DJANGO_ENV}
+    env_file:
+      - .env
+      - ./notes_service/.env
+    volumes:
+      - media_data:/app/media
+    restart: always
+    expose:
+      - "8001"
+    depends_on:
+      db_notes:
+        condition: service_healthy
+
+  gateway:
+    build:
+      context: ./gateway
+    container_name: gateway
+    environment:
+      DJANGO_ENV: ${DJANGO_ENV}
+    env_file:
+      - .env
+      - ./gateway/.env
+    restart: always
+    expose:
+      - "8000"
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./frontend:/frontend
+      - media_data:/app/media
+    depends_on:
+      - account_service
+      - notes_service
+      - gateway
+
+  db_account:
+    image: postgres:13
+    container_name: db_account
+    environment:
+      POSTGRES_DB: ${ACCOUNT_DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_account_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER} -d ${ACCOUNT_DB_NAME}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  db_notes:
+    image: postgres:13
+    container_name: db_notes
+    environment:
+      POSTGRES_DB: ${NOTES_DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_notes_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER} -d ${NOTES_DB_NAME}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: always
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  redis_data:
+  postgres_account_data:
+  postgres_notes_data:
+  media_data:

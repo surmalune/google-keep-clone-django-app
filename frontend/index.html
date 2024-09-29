@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Notes</title>
+        <link rel="icon" type="image/x-icon" href="images/clipboard-solid.svg">
+        <link href="styles/style.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="header-wrapper">
+            <header>
+                <div class="header-inner">
+                    <div class="branding">
+                        <div id="menu-toggle" title="Main menu">
+                            <i class="fa-solid fa-bars fa-lg"></i>
+                        </div>
+                        <a class="logo-link" tabindex="0" href="#" title="Notes">
+                            <i class="fa-solid fa-clipboard fa-2xl"></i>
+                            <span class="app-title">Notes</span>
+                        </a>
+                    </div>
+                    <div class="search-wrapper">
+                        <div class="search-box">
+                            <form id="search-form">
+                                <button class="btn-search" id="search-enter" title="Search" role="button">
+                                    <div class="icon-search">
+                                        <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+                                    </div>
+                                </button>
+                                <div class="search-input-wrapper">
+                                    <input type="text" class="search-input" placeholder="Search...">
+                                </div>
+                                <button class="btn-search" id="search-clear" title="Clear" role="button">
+                                    <div class="icon-search">
+                                        <i class="fa-solid fa-xmark fa-xl"></i>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="settings-wrapper">
+                            <div id="btn-view-toggle" class="settings-button" role="button" title="List view">
+                                <i class="fa-solid fa-table-list fa-lg"></i>
+                            </div>
+                            <div id="btn-settings" class="settings-button" role="button" title="Settings">
+                                <i class="fa-solid fa-gear fa-lg"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="auth-wrapper">
+                        <button id="btn-login" role="button" title="Login">
+                            <i class="fa-solid fa-user"></i>
+                        </button>
+                        <div class="user-account"></div>
+                    </div>
+                </div>
+            </header>
+            <div style="height: 64px;"></div>
+        </div>
+        <div class="content-wrapper">
+            <div class="selection-header">
+                <div role="button" id="btn-clear-selection" class="btn-selection" title="Clear selection" tabindex="0">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <span class="select-text">1 selected</span>
+                <div role="toolbar" class="select-toolbar"></div>
+            </div>
+            <div class="content-container">
+                <div class="sidebar">
+                    <div class="sidebar-navigation">
+                        <div class="sidebar-menu">
+                            <div role="button" id="btn-notes-menu" class="btn-menu">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 384 512"><path d="M297.2 248.9C311.6 228.3 320 203.2 320 176c0-70.7-57.3-128-128-128S64 105.3 64 176c0 27.2 8.4 52.3 22.8 72.9c3.7 5.3 8.1 11.3 12.8 17.7c0 0 0 0 0 0c12.9 17.7 28.3 38.9 39.8 59.8c10.4 19 15.7 38.8 18.3 57.5L109 384c-2.2-12-5.9-23.7-11.8-34.5c-9.9-18-22.2-34.9-34.5-51.8c0 0 0 0 0 0s0 0 0 0c-5.2-7.1-10.4-14.2-15.4-21.4C27.6 247.9 16 213.3 16 176C16 78.8 94.8 0 192 0s176 78.8 176 176c0 37.3-11.6 71.9-31.4 100.3c-5 7.2-10.2 14.3-15.4 21.4c0 0 0 0 0 0s0 0 0 0c-12.3 16.8-24.6 33.7-34.5 51.8c-5.9 10.8-9.6 22.5-11.8 34.5l-48.6 0c2.6-18.7 7.9-38.6 18.3-57.5c11.5-20.9 26.9-42.1 39.8-59.8c0 0 0 0 0 0s0 0 0 0s0 0 0 0c4.7-6.4 9-12.4 12.7-17.7zM192 128c-26.5 0-48 21.5-48 48c0 8.8-7.2 16-16 16s-16-7.2-16-16c0-44.2 35.8-80 80-80c8.8 0 16 7.2 16 16s-7.2 16-16 16zm0 384c-44.2 0-80-35.8-80-80l0-16 160 0 0 16c0 44.2-35.8 80-80 80z"/></svg>
+                                <span class="notes-title menu-text">Notes</span>
+                            </div>
+                            <div role="button" id="btn-archive-menu" class="btn-menu">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><path d="M50.7 58.5L0 160l208 0 0-128L93.7 32C75.5 32 58.9 42.3 50.7 58.5zM240 160l208 0L397.3 58.5C389.1 42.3 372.5 32 354.3 32L240 32l0 128zm208 32L0 192 0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-224z"/></svg>
+                                <span class="archive-title menu-text">Archive</span>
+                            </div>
+                            <div role="button" id="btn-trash-menu" class="btn-menu">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 448 512"><path d="M170.5 51.6L151.5 80l145 0-19-28.4c-1.5-2.2-4-3.6-6.7-3.6l-93.7 0c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80 368 80l48 0 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-8 0 0 304c0 44.2-35.8 80-80 80l-224 0c-44.2 0-80-35.8-80-80l0-304-8 0c-13.3 0-24-10.7-24-24S10.7 80 24 80l8 0 48 0 13.8 0 36.7-55.1C140.9 9.4 158.4 0 177.1 0l93.7 0c18.7 0 36.2 9.4 46.6 24.9zM80 128l0 304c0 17.7 14.3 32 32 32l224 0c17.7 0 32-14.3 32-32l0-304L80 128zm80 64l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0l0 208c0 8.8-7.2 16-16 16s-16-7.2-16-16l0-208c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg>
+                                <span class="trash-title menu-text">Trash</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content">
+                    <div id="create-note">
+                        <form id="note-form">
+                            <div class="images-container"></div>
+                            <input id="title-input" placeholder="Title" style="display: none;">
+                            <div class="checkboxes-container"></div>
+                            <div id="input-group">
+                                <textarea id="note-input" placeholder="Take a note..."></textarea>
+                                <div id="note-actions">
+                                    <div class="left-actions">
+                                        <i class="fas fa-tasks" id="add-list-icon" title="Checklist"></i>
+                                        <i class="fas fa-image" id="add-image-note-icon" title="Note with image"></i>
+                                        <i class="fa-solid fa-palette" id="edit-background-color" title="Background Color" style="display: none;"></i>    
+                                    </div>
+                                    <button type="submit" id="btn-submit" style="display: none;">Done</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="catalog">
+                        <div class="trash-message">
+                            Notes in Trash are deleted after 7 days.
+                            <div role="button" class="btn-empty-trash" tabindex="0">Empty Trash</div>
+                        </div>
+                        <div class="no-content-message">
+                            <div class="no-content-icon">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </div>
+                            <div class="no-content-text">No notes in Trash</div>
+                        </div>
+                        <div id="notes-container">
+                            <div class="notes-section-title" id="pinned-text">Pinned</div>
+                            <div class="notes-section-title" id="others-text">Others</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="overlay" style="display: none;"></div>
+        <div class="note-edit-container" style="display: none;"></div>
+        <script src="dist/bundle.js" defer></script>
+    </body>
+</html>
