@@ -11,6 +11,8 @@ I have been working on replicating the functionality and visual design of Google
 
 ## Technology Stack and Features
 - 🧑‍💻 **Backend:**
+	- 🧩 Microservices architecture for scalable and maintainable applications.
+	- 🔗 RESTful API for efficient interaction between frontend and backend services.
 	- 🐍 [Python 3.11](https://www.python.org/).
 	- 🌐 [Django 4.2](https://www.djangoproject.com/) as the core web framework.
 	- 🛠️ [Django REST Framework (DRF)](https://www.django-rest-framework.org/) for building the API.
@@ -120,7 +122,7 @@ If Node.js is not installed, follow the official installation guide.
 
 ### Clone the Git repository
 ```bash
-git clone <repository_url>
+git clone https://github.com/surmalune/google-keep-clone-django-app.git
 ```
 ### Frontend Setup
 1. Go to the `frontend/` folder.
