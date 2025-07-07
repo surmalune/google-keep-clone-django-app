@@ -122,7 +122,7 @@ If Node.js is not installed, follow the official installation guide.
 
 ### Clone the Git repository
 ```bash
-git clone https://github.com/surmalune/google-keep-clone-django-app.git
+git clone https://github.com/surmalune/django-google-keep-clone-app.git
 ```
 ### Frontend Setup
 1. Go to the `frontend/` folder.
